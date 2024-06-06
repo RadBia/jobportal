@@ -22,7 +22,6 @@ public class JobSeekerProfile {
         private String city;
         private String state;
         private String country;
-        private String company;
         private String workAuthorization;
         private String employmentType;
         private String resume;
@@ -38,7 +37,7 @@ public class JobSeekerProfile {
 
     public JobSeekerProfile(int userAccountID, Users userId, String firstName, String lastName, String city,
                             String state,
-                            String country, String company, String workAuthorization, String employmentType,
+                            String country, String workAuthorization, String employmentType,
                             String resume,
                             String profilePhoto, List<Skills> skills) {
         this.userAccountID = userAccountID;
@@ -48,13 +47,18 @@ public class JobSeekerProfile {
         this.city = city;
         this.state = state;
         this.country = country;
-        this.company = company;
         this.workAuthorization = workAuthorization;
         this.employmentType = employmentType;
         this.resume = resume;
         this.profilePhoto = profilePhoto;
         this.skills = skills;
     }
+
+    public JobSeekerProfile(Users userId) {
+        this.userId = userId;
+    }
+
+
 
     public int getUserAccountID() {
         return userAccountID;
@@ -112,14 +116,6 @@ public class JobSeekerProfile {
         this.country = country;
     }
 
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
     public String getWorkAuthorization() {
         return workAuthorization;
     }
@@ -170,7 +166,6 @@ public class JobSeekerProfile {
                ", city='" + city + '\'' +
                ", state='" + state + '\'' +
                ", country='" + country + '\'' +
-               ", company='" + company + '\'' +
                ", workAuthorization='" + workAuthorization + '\'' +
                ", employmentType='" + employmentType + '\'' +
                ", resume='" + resume + '\'' +

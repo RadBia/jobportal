@@ -1,10 +1,12 @@
 package com.myapp.jobportal.repository;
 
 import com.myapp.jobportal.entity.Users;
-import com.myapp.jobportal.entity.UsersType;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
 
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 
 
+    Optional<Users> findByEmail(String email);
 }

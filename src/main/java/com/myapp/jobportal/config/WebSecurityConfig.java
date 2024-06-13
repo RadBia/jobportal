@@ -1,12 +1,15 @@
 package com.myapp.jobportal.config;
 
 import com.myapp.jobportal.services.CustomUserDetailsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.CachingUserDetailsService;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +20,9 @@ import java.beans.JavaBean;
 @Configuration
 public class WebSecurityConfig {
 
+    private static final Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
     private final CustomUserDetailsService customUserDetailsService;
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
     private final String[] publicUrl = {"/",
             "/global-search/**",
             "/register",
@@ -33,9 +38,12 @@ public class WebSecurityConfig {
             "/*.js.map",
             "/fonts**", "/favicon.ico", "/resources/**", "/error"};
 
+
     @Autowired
-    public WebSecurityConfig(CustomUserDetailsService customUserDetailsService) {
+    public WebSecurityConfig(CustomUserDetailsService customUserDetailsService,
+                             CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler) {
         this.customUserDetailsService = customUserDetailsService;
+        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
     }
 
     @Bean
@@ -47,6 +55,15 @@ public class WebSecurityConfig {
             auth.requestMatchers(publicUrl).permitAll();
             auth.anyRequest().authenticated();
         });
+
+        http.formLogin(form -> form.loginPage("/login").permitAll()
+                        .successHandler(customAuthenticationSuccessHandler))
+                .logout(logout -> {
+                    logout.logoutUrl("/logout");
+                    logout.logoutSuccessUrl("/");
+                }).cors((Customizer.withDefaults()))
+                .csrf(csrf -> csrf.disable());
+
         return http.build();
     }
 

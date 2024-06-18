@@ -23,10 +23,15 @@ public class JobPostActivity {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "jobCompanyId", referencedColumnName = "Id")
-    private JobLocation jobCompanyId;
+    private JobCompany jobCompanyId;
+
+    @Transient
+    private Boolean isActive;
 
     @Transient
     private Boolean isSaved;
+
+
 
     @Length(max = 10000)
     private String descriptionOfJob;
@@ -41,13 +46,14 @@ public class JobPostActivity {
     public JobPostActivity() {
     }
 
-    public JobPostActivity(Integer jobPostId, Users postedById, JobLocation jobLocationId, JobLocation jobCompanyId,
-                           Boolean isSaved, String descriptionOfJob, String jobType, String salary, String remote,
-                           Date postedDate, String jobTitle) {
+    public JobPostActivity(Integer jobPostId, Users postedById, JobLocation jobLocationId, JobCompany jobCompanyId,
+                           Boolean isActive, Boolean isSaved, String descriptionOfJob, String jobType, String salary,
+                           String remote, Date postedDate, String jobTitle) {
         this.jobPostId = jobPostId;
         this.postedById = postedById;
         this.jobLocationId = jobLocationId;
         this.jobCompanyId = jobCompanyId;
+        this.isActive = isActive;
         this.isSaved = isSaved;
         this.descriptionOfJob = descriptionOfJob;
         this.jobType = jobType;
@@ -81,12 +87,20 @@ public class JobPostActivity {
         this.jobLocationId = jobLocationId;
     }
 
-    public JobLocation getJobCompanyId() {
+    public JobCompany getJobCompanyId() {
         return jobCompanyId;
     }
 
-    public void setJobCompanyId(JobLocation jobCompanyId) {
+    public void setJobCompanyId(JobCompany jobCompanyId) {
         this.jobCompanyId = jobCompanyId;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     public Boolean getSaved() {
@@ -152,6 +166,7 @@ public class JobPostActivity {
                ", postedById=" + postedById +
                ", jobLocationId=" + jobLocationId +
                ", jobCompanyId=" + jobCompanyId +
+               ", isActive=" + isActive +
                ", isSaved=" + isSaved +
                ", descriptionOfJob='" + descriptionOfJob + '\'' +
                ", jobType='" + jobType + '\'' +

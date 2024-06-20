@@ -84,7 +84,6 @@
                th:text="${user.firstName+' '+user.lastName}"
                class="nav-item nav-link px-2 me-3">
         </label>
-
         <label th:unless="${user.firstName != null && user.lastName != null}" th:text="${username}"
                class="nav-item nav-link px-2 me-3"></label>
 

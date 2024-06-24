@@ -9,33 +9,33 @@ import java.util.List;
 @Table(name = "job_seeker_profile")
 public class JobSeekerProfile {
 
-        @Id
-        private int userAccountID;
+    @Id
+    private Integer userAccountID;
 
-        @OneToOne
-        @JoinColumn(name = "user_account_id")
-        @MapsId
-        private Users userId;
+    @OneToOne
+    @JoinColumn(name = "user_account_id")
+    @MapsId
+    private Users userId;
 
-        private String firstName;
-        private String lastName;
-        private String city;
-        private String state;
-        private String country;
-        private String workAuthorization;
-        private String employmentType;
-        private String resume;
+    private String firstName;
+    private String lastName;
+    private String city;
+    private String state;
+    private String country;
+    private String workAuthorization;
+    private String employmentType;
+    private String resume;
 
-        @Column(nullable = true, length = 64)
-        private String profilePhoto;
+    @Column(nullable = true, length = 64)
+    private String profilePhoto;
 
-        @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile")
-        private List<Skills> skills;
+    @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile")
+    private List<Skills> skills;
 
     public JobSeekerProfile() {
     }
 
-    public JobSeekerProfile(int userAccountID, Users userId, String firstName, String lastName, String city,
+    public JobSeekerProfile(Integer userAccountID, Users userId, String firstName, String lastName, String city,
                             String state,
                             String country, String workAuthorization, String employmentType,
                             String resume,
@@ -59,12 +59,11 @@ public class JobSeekerProfile {
     }
 
 
-
-    public int getUserAccountID() {
+    public Integer getUserAccountID() {
         return userAccountID;
     }
 
-    public void setUserAccountID(int userAccountID) {
+    public void setUserAccountID(Integer userAccountID) {
         this.userAccountID = userAccountID;
     }
 
@@ -156,6 +155,13 @@ public class JobSeekerProfile {
         this.skills = skills;
     }
 
+    @Transient
+    public String getPhotosImagePath() {
+        if (profilePhoto == null || userAccountID == null)
+            return null;
+        return "/photos/candidate/" + userAccountID + "/" + profilePhoto;
+    }
+
     @Override
     public String toString() {
         return "JobSeekerProfile{" +
@@ -170,7 +176,6 @@ public class JobSeekerProfile {
                ", employmentType='" + employmentType + '\'' +
                ", resume='" + resume + '\'' +
                ", profilePhoto='" + profilePhoto + '\'' +
-               ", skills=" + skills +
                '}';
     }
 }

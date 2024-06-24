@@ -10,7 +10,7 @@ import java.util.List;
 public class JobSeekerProfile {
 
     @Id
-    private Integer userAccountID;
+    private Integer userAccountId;
 
     @OneToOne
     @JoinColumn(name = "user_account_id")
@@ -35,12 +35,12 @@ public class JobSeekerProfile {
     public JobSeekerProfile() {
     }
 
-    public JobSeekerProfile(Integer userAccountID, Users userId, String firstName, String lastName, String city,
+    public JobSeekerProfile(Integer userAccountId, Users userId, String firstName, String lastName, String city,
                             String state,
                             String country, String workAuthorization, String employmentType,
                             String resume,
                             String profilePhoto, List<Skills> skills) {
-        this.userAccountID = userAccountID;
+        this.userAccountId = userAccountId;
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -59,12 +59,12 @@ public class JobSeekerProfile {
     }
 
 
-    public Integer getUserAccountID() {
-        return userAccountID;
+    public Integer getUserAccountId() {
+        return userAccountId;
     }
 
-    public void setUserAccountID(Integer userAccountID) {
-        this.userAccountID = userAccountID;
+    public void setUserAccountID(Integer userAccountId) {
+        this.userAccountId = userAccountId;
     }
 
     public Users getUserId() {
@@ -157,15 +157,15 @@ public class JobSeekerProfile {
 
     @Transient
     public String getPhotosImagePath() {
-        if (profilePhoto == null || userAccountID == null)
+        if (profilePhoto == null || userAccountId == null)
             return null;
-        return "/photos/candidate/" + userAccountID + "/" + profilePhoto;
+        return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
     }
 
     @Override
     public String toString() {
         return "JobSeekerProfile{" +
-               "userAccountID=" + userAccountID +
+               "userAccountID=" + userAccountId +
                ", userId=" + userId +
                ", firstName='" + firstName + '\'' +
                ", lastName='" + lastName + '\'' +

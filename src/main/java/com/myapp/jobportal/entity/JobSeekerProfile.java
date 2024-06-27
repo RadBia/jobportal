@@ -1,7 +1,6 @@
 package com.myapp.jobportal.entity;
 
 import jakarta.persistence.*;
-import org.apache.catalina.LifecycleState;
 
 import java.util.List;
 
@@ -63,7 +62,7 @@ public class JobSeekerProfile {
         return userAccountId;
     }
 
-    public void setUserAccountID(Integer userAccountId) {
+    public void setUserAccountId(Integer userAccountId) {
         this.userAccountId = userAccountId;
     }
 

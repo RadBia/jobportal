@@ -121,7 +121,7 @@ public class RecruiterProfile {
     public String getPhotosImagePath() {
         if (profilePhoto == null)
             return null;
-        return "photos/recruiter" + userAccountID + "/" + profilePhoto;
+        return "/photos/recruiter/" + userAccountID + "/" + profilePhoto;
     }
 
 

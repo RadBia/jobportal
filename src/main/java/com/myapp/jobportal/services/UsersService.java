@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class UserService {
+public class UsersService {
 
     private final UsersRepository usersRepository;
     private final RecruiterProfileRepository recruiterProfileRepository;
@@ -25,8 +25,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
 
-    public UserService(UsersRepository usersRepository, RecruiterProfileRepository recruiterProfileRepository,
-                       JobSeekerProfileRepository jobSeekerProfileRepository, PasswordEncoder passwordEncoder) {
+    public UsersService(UsersRepository usersRepository, RecruiterProfileRepository recruiterProfileRepository,
+                        JobSeekerProfileRepository jobSeekerProfileRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
         this.recruiterProfileRepository = recruiterProfileRepository;
         this.jobSeekerProfileRepository = jobSeekerProfileRepository;

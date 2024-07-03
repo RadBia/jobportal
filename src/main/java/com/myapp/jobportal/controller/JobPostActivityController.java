@@ -5,7 +5,7 @@ import com.myapp.jobportal.entity.*;
 import com.myapp.jobportal.services.JobPostActivityService;
 import com.myapp.jobportal.services.JobSeekerApplyService;
 import com.myapp.jobportal.services.JobSeekerSaveService;
-import com.myapp.jobportal.services.UserService;
+import com.myapp.jobportal.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -28,14 +28,14 @@ import java.util.Objects;
 @Controller
 public class JobPostActivityController {
 
-    private final UserService userService;
+    private final UsersService userService;
     private final SqlInitializationAutoConfiguration sqlInitializationAutoConfiguration;
     private final JobPostActivityService jobPostActivityService;
     private final JobSeekerApplyService jobSeekerApplyService;
     private final JobSeekerSaveService jobSeekerSaveService;
 
     @Autowired
-    public JobPostActivityController(UserService userService,
+    public JobPostActivityController(UsersService userService,
                                      SqlInitializationAutoConfiguration sqlInitializationAutoConfiguration,
                                      JobPostActivityService jobPostActivityService,
                                      JobSeekerApplyService jobSeekerApplyService,

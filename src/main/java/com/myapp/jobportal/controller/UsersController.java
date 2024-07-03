@@ -2,7 +2,7 @@ package com.myapp.jobportal.controller;
 
 import com.myapp.jobportal.entity.Users;
 import com.myapp.jobportal.entity.UsersType;
-import com.myapp.jobportal.services.UserService;
+import com.myapp.jobportal.services.UsersService;
 import com.myapp.jobportal.services.UsersTypeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,9 +21,9 @@ import java.util.List;
 public class UsersController {
 
     private final UsersTypeService usersTypeService;
-    private final UserService usersService;
+    private final UsersService usersService;
 
-    public UsersController(UsersTypeService usersTypeService, UserService userService) {
+    public UsersController(UsersTypeService usersTypeService, UsersService userService) {
         this.usersTypeService = usersTypeService;
         this.usersService = userService;
     }
